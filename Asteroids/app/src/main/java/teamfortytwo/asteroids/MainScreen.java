@@ -2,16 +2,25 @@ package teamfortytwo.asteroids;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 
-public class MainScreen extends ActionBarActivity {
+public class MainScreen extends ActionBarActivity implements OnClickListener{
+
+    private Button startButton;
+    public GameScreen game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //startButton = (Button) findViewById(); //Waiting for xml
     }
 
 
@@ -20,6 +29,29 @@ public class MainScreen extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public void onClick(View v){
+
+        switch(v.getId()){
+            case 0: {//Waiting for xml
+                startGame();
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+
+    }
+
+    public void startGame(){
+
+        Intent gameActivity = new Intent(MainScreen.this, GameScreen.class);
+
+        startActivity(gameActivity);
+
     }
 
     @Override
