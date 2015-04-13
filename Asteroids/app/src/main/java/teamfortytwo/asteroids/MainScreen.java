@@ -20,7 +20,8 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //startButton = (Button) findViewById(); //Waiting for xml
+        startButton = (Button) findViewById(R.id.startGame);
+        startButton.setOnClickListener(this);
     }
 
 
@@ -35,7 +36,7 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
     public void onClick(View v){
 
         switch(v.getId()){
-            case 0: {//Waiting for xml
+            case R.id.startGame: {
                 startGame();
                 break;
             }
