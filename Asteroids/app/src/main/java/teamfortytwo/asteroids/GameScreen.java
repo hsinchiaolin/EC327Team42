@@ -1,6 +1,8 @@
 package teamfortytwo.asteroids;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 
 /**
@@ -13,5 +15,10 @@ public class GameScreen extends Activity{
         setContentView(R.layout.game_screen);
     }
 
+
+    Bitmap b = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+    Canvas canvas = new Canvas(b);
+
+    
 
 }

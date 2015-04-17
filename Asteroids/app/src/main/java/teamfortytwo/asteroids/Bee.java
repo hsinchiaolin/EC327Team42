@@ -13,6 +13,7 @@ public class Bee extends ImageView{
 
 
     public Bee(Context context) {
+
         super(context);
     }
 }
