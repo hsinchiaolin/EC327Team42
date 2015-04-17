@@ -8,11 +8,12 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 
 
 public class MainScreen extends ActionBarActivity implements OnClickListener{
 
-    private Button startButton;
+    private ImageButton startButton;
     public GameScreen game;
 
     @Override
@@ -20,7 +21,7 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startButton = (Button) findViewById(R.id.start);
+        startButton = (ImageButton) findViewById(R.id.start);
         startButton.setOnClickListener(this);
     }
 
