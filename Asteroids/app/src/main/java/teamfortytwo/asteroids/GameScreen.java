@@ -26,6 +26,7 @@ public class GameScreen extends Activity{
         Bitmap b = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(b);
 
+        //Used for determining screen size in pixels
         DisplayMetrics displayMetrics = new DisplayMetrics();
         WindowManager wm = (WindowManager) getApplicationContext().getSystemService(this.WINDOW_SERVICE);
         wm.getDefaultDisplay().getMetrics(displayMetrics);

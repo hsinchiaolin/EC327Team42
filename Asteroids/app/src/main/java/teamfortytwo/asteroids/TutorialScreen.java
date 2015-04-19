@@ -1,28 +1,34 @@
 package teamfortytwo.asteroids;
 
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
+/**
+ * Created by BrandonWebster on 4/19/15.
+ *
+ * Much of this class is still just the copy from the main screen.
+ * Still needs to be changed to be related to
+ */
 
-public class MainScreen extends ActionBarActivity implements OnClickListener{
 
-    private ImageButton startButton;
-    public GameScreen game;
+public class TutorialScreen extends ActionBarActivity implements OnClickListener{
+
+
+    private ImageButton backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startButton = (ImageButton) findViewById(R.id.start);
-        startButton.setOnClickListener(this);
+        backButton = (ImageButton) findViewById(R.id.start);
+        backButton.setOnClickListener(this);
     }
 
 
@@ -37,8 +43,7 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
     public void onClick(View v){
 
         switch(v.getId()){
-            case R.id.start: { //If the button clicked was the start button
-                startGame(); // Start the game screen
+            case R.id.start: {
                 break;
             }
             default: {
@@ -48,13 +53,6 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
 
     }
 
-    public void startGame(){
-
-        Intent gameActivity = new Intent(MainScreen.this, GameScreen.class); //To create an activity, you need to declare an intent with the parent activty, and the activity you want to create
-
-        startActivity(gameActivity); //This is how you start an activity
-
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
