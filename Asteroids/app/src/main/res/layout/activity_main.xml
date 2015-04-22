@@ -12,37 +12,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/start"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/start_unhit"
-        android:clickable="true" />
+        android:clickable="true"
+        android:layout_above="@+id/score"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/score"
-        android:layout_marginTop="48dp"
         android:background="@drawable/score_unhit"
         android:clickable="true"
-        android:layout_below="@+id/start"
-        android:layout_alignLeft="@+id/start"
-        android:layout_alignStart="@+id/start" />
+        android:layout_above="@+id/tutorial"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="42dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tutorial"
-        android:layout_marginTop="53dp"
         android:background="@drawable/tut_unhit"
         android:clickable="true"
-        android:layout_below="@+id/score"
-        android:layout_alignLeft="@+id/score"
-        android:layout_alignStart="@+id/score" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/main_title"
         android:background="@drawable/title"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/start" />
 </RelativeLayout>
