@@ -11,25 +11,29 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:id="@+id/scoretext"
-        android:textSize="30dp"
-        android:text="Score: "/>
+        android:text="High Scores:"
+        android:textSize="45dp"
+        android:id="@+id/scoretitle"
+        />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:id="@+id/gameover"
-        android:background="@drawable/gameover"
-        android:visibility="invisible"/>
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/score_unhit"
-        android:id="@+id/scoresbutton"
-        android:visibility="invisible"/>
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/back_unhit"
+        android:id="@+id/backbutton"
+        />
+    <TextView
+        android:layout_width="120"
+        android:layout_height="400"
+        android:id="@+id/scorelist"
+        android:textSize="30dp"
+        android:text="1st: 15 \n2nd: 13\n3rd: 10\netc."
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+
 </RelativeLayout>
