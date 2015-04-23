@@ -9,9 +9,9 @@ import android.graphics.drawable.Drawable;
  */
 public class Entity {
 
-    private Drawable image; //This is the image drawn to the screen
-    private Vector<Integer> pos; //The position of the Bee on the screen
-    private int size; //this will be added to position in setBounds
+    protected Drawable image; //This is the image drawn to the screen
+    protected Vector<Integer> pos; //The position of the Bee on the screen
+    protected int size; //this will be added to position in setBounds
     static int team;
 
     public Entity(Resources res, Vector<Integer> pos){
