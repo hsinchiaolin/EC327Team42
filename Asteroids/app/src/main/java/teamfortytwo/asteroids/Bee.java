@@ -1,8 +1,7 @@
 package teamfortytwo.asteroids;
 
 import android.content.res.Resources;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
+
 
 /**
  * Created by BrandonWebster on 4/13/15.

@@ -5,9 +5,11 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.hardware.Sensor;
+import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -38,8 +40,17 @@ public class GameScreen extends Activity{
         screenWidth = displayMetrics.widthPixels;
         screenHeight = displayMetrics.heightPixels;
 
-        view = new GameView(this, screenWidth, screenHeight);
+        //Sensors
+        sManager = (SensorManager) getSystemService(this.SENSOR_SERVICE);
+        gyro = sManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 
+        view = new GameView(this, screenWidth, screenHeight);
+        setContentView(view);
     }
 
+    @Override
+    public boolean onGenericMotionEvent(MotionEvent event) {
+
+        return super.onGenericMotionEvent(event);
+    }
 }

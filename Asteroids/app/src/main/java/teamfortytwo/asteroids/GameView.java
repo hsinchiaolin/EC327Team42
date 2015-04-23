@@ -18,6 +18,7 @@ public class GameView extends View {
     public GameView(Context context, int screenWidth, int screenHeight) {
         super(context);
 
+        setBackground(R.drawable.ingame);
         Resources res = this.getResources();
 
         player = new Bee(res, new Vector<Integer>(screenWidth / 2, screenHeight - screenHeight / 5));
