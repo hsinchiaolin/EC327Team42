@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.WindowManager;
 
 /**
@@ -14,7 +17,12 @@ import android.view.WindowManager;
 public class GameScreen extends Activity{
 
     Canvas canvas;
-    Bee player;
+
+
+    private SensorManager sManager;
+    private Sensor gyro;
+
+    GameView view; //This is needed for to draw drawables
 
     int screenWidth;
     int screenHeight;
@@ -23,9 +31,6 @@ public class GameScreen extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_screen);
 
-        Bitmap b = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
-        canvas = new Canvas(b);
-
         //Used for determining screen size in pixels
         DisplayMetrics displayMetrics = new DisplayMetrics();
         WindowManager wm = (WindowManager) getApplicationContext().getSystemService(this.WINDOW_SERVICE);
@@ -33,14 +38,8 @@ public class GameScreen extends Activity{
         screenWidth = displayMetrics.widthPixels;
         screenHeight = displayMetrics.heightPixels;
 
-        Resources res = this.getResources();
-        player = new Bee(res, new Vector<Integer>(screenWidth / 2, screenHeight - screenHeight / 5));
+        view = new GameView(this, screenWidth, screenHeight);
 
     }
-
-    protected void onDraw(){
-        player.draw(canvas);
-    }
-
 
 }
