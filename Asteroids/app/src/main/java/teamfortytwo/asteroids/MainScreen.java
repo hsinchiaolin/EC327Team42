@@ -14,7 +14,7 @@ import android.widget.ImageButton;
 
 public class MainScreen extends ActionBarActivity implements OnClickListener{
 
-    private ImageButton startButton;
+    private ImageButton startButton, scoreButton, tutButton;
     public GameScreen game;
 
     @Override
@@ -24,6 +24,12 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
 
         startButton = (ImageButton) findViewById(R.id.start);
         startButton.setOnClickListener(this);
+
+        scoreButton = (ImageButton) findViewById(R.id.score);
+        scoreButton.setOnClickListener(this);
+
+        tutButton = (ImageButton) findViewById(R.id.tutorial);
+        tutButton.setOnClickListener(this);
     }
 
 
@@ -72,6 +78,7 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
 
         Intent scoreActivity = new Intent (MainScreen.this,ScoreScreen.class );
 
+<<<<<<< HEAD
         startActivity(scoreActivity);
     }
 
@@ -81,6 +88,15 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
         Intent tutActivity = new Intent (MainScreen.this, TutorialScreen.class);
 
         startActivity(tutActivity);
+=======
+        Intent startActivity = new Intent (MainScreen.this,ScoreScreen.class );
+        startActivity(startActivity);
+    }
+
+    public void startTutorial() {
+        Intent tutActivity = new Intent (MainScreen.this, TutorialScreen.class);
+       startActivity(tutActivity);
+>>>>>>> fa6fe44a1a4bd439ed48e4934316c39d8248a0de
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
