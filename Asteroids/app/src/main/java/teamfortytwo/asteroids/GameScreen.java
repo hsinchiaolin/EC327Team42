@@ -8,7 +8,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -17,9 +16,6 @@ import android.view.WindowManager;
  * Created by BrandonWebster on 4/8/15.
  */
 public class GameScreen extends Activity implements OnClickListener, SensorEventListener{
-
-    Canvas canvas;
-
 
     private SensorManager sManager;
     private Sensor accelerometer, magnetometer;
@@ -88,8 +84,6 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
             SensorManager.getRotationMatrix(mR, null, lastAccelerometer, lastMagnetometer);
             SensorManager.getOrientation(mR, mOrientation);
         }
-
-        Log.i("Sensor", "Angle: " + mOrientation[2]);
 
         view.updatePlayer(mOrientation[2]);
         view.invalidate();

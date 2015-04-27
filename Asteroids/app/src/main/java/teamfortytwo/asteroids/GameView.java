@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+
 /**
  * Created by BrandonWebster on 4/22/15.
  */
@@ -16,6 +17,7 @@ import android.view.WindowManager;
 public class GameView extends View {
     /* This class is where drawables actually get updated and drawn. */
     Bee player;
+
     int screenWidth, screenHeight;
 
 
@@ -36,7 +38,7 @@ public class GameView extends View {
     }
 
     public void updatePlayer(float angle){
-        float move = angle * (screenWidth / 150);
+        float move = angle * (screenWidth / 80);
         player.move(move);
 
     }

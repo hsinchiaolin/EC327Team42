@@ -3,6 +3,7 @@ package teamfortytwo.asteroids;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -35,13 +36,11 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
 
     @Override
     public void onClick(View v){
+        Log.i("onClick", "" + v.getId());
 
         switch(v.getId()){
             case R.id.start: { //If the button clicked was the start button
                 startGame(); // Start the game screen
-                break;
-            }
-            default: {
                 break;
             }
             case R.id.score: {
@@ -52,6 +51,10 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
                 startTutorial();
                 break;
             }
+            default: {
+                break;
+            }
+
         }
 
     }
@@ -65,12 +68,19 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
     }
 
     public void startScore() {
+        Log.i("Main", "startScore() called");
 
-        Intent gameActivity = new Intent (MainScreen.this,ScoreScreen.class );
+        Intent scoreActivity = new Intent (MainScreen.this,ScoreScreen.class );
+
+        startActivity(scoreActivity);
     }
 
     public void startTutorial() {
-        Intent gameActivity = new Intent (MainScreen.this, TutorialScreen.class);
+        Log.i("Main", "startTutorial() called");
+
+        Intent tutActivity = new Intent (MainScreen.this, TutorialScreen.class);
+
+        startActivity(tutActivity);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
