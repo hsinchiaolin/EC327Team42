@@ -26,6 +26,10 @@
 
         </activity>
 
+        <activity android:name=".ScoreScreen"
+            android:label="Asteroids">
+
+        </activity>
         <activity android:name=".TutorialScreen"
             android:label="Asteroids">
 

@@ -78,7 +78,6 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
 
         Intent scoreActivity = new Intent (MainScreen.this,ScoreScreen.class );
 
-<<<<<<< HEAD
         startActivity(scoreActivity);
     }
 
@@ -88,16 +87,10 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
         Intent tutActivity = new Intent (MainScreen.this, TutorialScreen.class);
 
         startActivity(tutActivity);
-=======
-        Intent startActivity = new Intent (MainScreen.this,ScoreScreen.class );
-        startActivity(startActivity);
+
     }
 
-    public void startTutorial() {
-        Intent tutActivity = new Intent (MainScreen.this, TutorialScreen.class);
-       startActivity(tutActivity);
->>>>>>> fa6fe44a1a4bd439ed48e4934316c39d8248a0de
-    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
