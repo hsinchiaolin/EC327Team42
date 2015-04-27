@@ -44,6 +44,14 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
             default: {
                 break;
             }
+            case R.id.score: {
+                startScore();
+                break;
+            }
+            case R.id.tutorial: {
+                startTutorial();
+                break;
+            }
         }
 
     }
@@ -56,6 +64,14 @@ public class MainScreen extends ActionBarActivity implements OnClickListener{
 
     }
 
+    public void startScore() {
+
+        Intent gameActivity = new Intent (MainScreen.this,ScoreScreen.class );
+    }
+
+    public void startTutorial() {
+        Intent gameActivity = new Intent (MainScreen.this, TutorialScreen.class);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
