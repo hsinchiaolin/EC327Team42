@@ -30,11 +30,13 @@ public class Entity {
     }
 
     //Set Functions
-    public void setPos(int x, int y){
+    public void setPos(float x, float y){
         /*
         Set the position of the entity
          */
-        this.pos = pos;
+
+        pos.setX((int) x);
+        pos.setY((int) y);
     }
 
     protected void setBounds(int left, int top, int right, int bottom){
@@ -44,7 +46,6 @@ public class Entity {
 
 
     public void draw(Canvas canvas){
-        Log.i("Entity", "Redrawn");
         setBounds(pos.getX(), pos.getY(), pos.getX() + size, pos.getY() + size); //updates the position of the image on the screen
         image.draw(canvas); //Draws the image
     }

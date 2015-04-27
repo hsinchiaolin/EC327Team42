@@ -30,7 +30,7 @@ public class GameView extends View {
     }
 
     public void updatePlayer(float angle){
-        int move = (int) angle * 100;
+        float move = (int) angle * 10;
         player.move(move);
 
     }
@@ -38,7 +38,6 @@ public class GameView extends View {
     @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
-        Log.i("View", "Drawing");
         player.draw(canvas);
     }
 }

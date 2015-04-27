@@ -17,7 +17,7 @@ public class Bee extends Entity{
         team = 0;
     }
 
-    public void move(int x){
+    public void move(float x){
         setPos(pos.getX() + x, pos.getY());
     }
 
