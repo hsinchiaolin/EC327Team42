@@ -29,8 +29,8 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
 
     GameView view; //This is needed for to draw drawables
 
-    int screenWidth;
-    int screenHeight;
+    static int screenWidth;
+    static int screenHeight;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -47,13 +47,13 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
         sManager = (SensorManager) getSystemService(this.SENSOR_SERVICE);
         accelerometer = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         magnetometer = sManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        
+
         sManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
         sManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_GAME);
         accSet = false;
         magSet = false;
 
-        view = new GameView(this, screenWidth, screenHeight);
+        view = new GameView(this);
         setContentView(view);
     }
 

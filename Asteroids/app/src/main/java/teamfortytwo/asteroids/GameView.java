@@ -16,21 +16,27 @@ import android.view.WindowManager;
 public class GameView extends View {
     /* This class is where drawables actually get updated and drawn. */
     Bee player;
+    int screenWidth, screenHeight;
 
-    public GameView(Context context, int screenWidth, int screenHeight) {
+
+    public GameView(Context context) {
         super(context);
+
+        this.screenHeight = GameScreen.screenHeight;
+        this.screenWidth = GameScreen.screenWidth;
 
         Resources res = this.getResources();
         Drawable background = res.getDrawable(R.drawable.ingame);
         setBackground(background);
 
-        player = new Bee(res, new Vector(screenWidth / 2, screenHeight - screenHeight / 5), screenWidth / 12);
+        Collisions collisions = new Collisions();
+        player = new Bee(res, collisions, new Vector(screenWidth / 2, screenHeight - screenHeight / 5), screenWidth / 12);
 
 
     }
 
     public void updatePlayer(float angle){
-        float move = (int) angle * 10;
+        float move = angle * (screenWidth / 150);
         player.move(move);
 
     }

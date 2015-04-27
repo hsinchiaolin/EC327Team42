@@ -14,11 +14,12 @@ public class Entity {
     protected Vector pos; //The position of the Bee on the screen
     protected int size; //this will be added to position in setBounds
     static int team;
+    Collisions collisions;
 
-    public Entity(Resources res, Vector pos, int size){
+    public Entity(Collisions collisions, Vector pos, int size){
         this.size = size;
         this.pos = pos; //sets the position vector
-
+        this.collisions = collisions;
     }
 
     //Get Functions
@@ -30,13 +31,22 @@ public class Entity {
     }
 
     //Set Functions
-    public void setPos(float x, float y){
+    public void addPos(float dx, float dy){
         /*
         Set the position of the entity
          */
 
-        pos.setX((int) x);
-        pos.setY((int) y);
+
+        pos.setX((int) dx + pos.getX());
+        pos.setY((int) dy + pos.getY());
+        int check = collisions.check(this);
+        if(check == Collisions.off_x){
+            pos.setX(pos.getX() - (int) dx);
+        }
+        if(check == Collisions.off_y){
+            pos.setY(pos.getY() - (int) dy);
+        }
+
     }
 
     protected void setBounds(int left, int top, int right, int bottom){
