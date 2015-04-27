@@ -3,6 +3,7 @@ package teamfortytwo.asteroids;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 /**
  * Created by BrandonWebster on 4/19/15.
@@ -43,6 +44,7 @@ public class Entity {
 
 
     public void draw(Canvas canvas){
+        Log.i("Entity", "Redrawn");
         setBounds(pos.getX(), pos.getY(), pos.getX() + size, pos.getY() + size); //updates the position of the image on the screen
         image.draw(canvas); //Draws the image
     }

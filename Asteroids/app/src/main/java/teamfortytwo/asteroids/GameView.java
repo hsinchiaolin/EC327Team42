@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -24,10 +25,12 @@ public class GameView extends View {
         setBackground(background);
 
         player = new Bee(res, new Vector(screenWidth / 2, screenHeight - screenHeight / 5), screenWidth / 12);
+
+
     }
 
     public void updatePlayer(float angle){
-        int move = (int) angle * 1000;
+        int move = (int) angle * 100;
         player.move(move);
 
     }
@@ -35,7 +38,7 @@ public class GameView extends View {
     @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
-
+        Log.i("View", "Drawing");
         player.draw(canvas);
     }
 }

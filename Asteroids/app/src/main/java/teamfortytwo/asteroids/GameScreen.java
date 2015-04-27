@@ -24,7 +24,7 @@ public class GameScreen extends Activity implements SensorEventListener{
 
 
     private SensorManager sManager;
-    private Sensor accelerometer, magnetometer;
+    private Sensor gyro;
 
     GameView view; //This is needed for to draw drawables
 
@@ -44,10 +44,8 @@ public class GameScreen extends Activity implements SensorEventListener{
 
         //Sensors
         sManager = (SensorManager) getSystemService(this.SENSOR_SERVICE);
-        accelerometer = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        magnetometer = sManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        sManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
-        sManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_GAME);
+        gyro = sManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        sManager.registerListener(this, gyro, SensorManager.SENSOR_DELAY_GAME);
 
         view = new GameView(this, screenWidth, screenHeight);
         setContentView(view);
@@ -56,15 +54,13 @@ public class GameScreen extends Activity implements SensorEventListener{
     @Override
     protected void onResume(){
         super.onResume();
-        sManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
-        sManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_GAME);
+        sManager.registerListener(this, gyro, SensorManager.SENSOR_DELAY_GAME);
     }
 
     @Override
     protected void onPause(){
         super.onPause();
-        sManager.unregisterListener(this, accelerometer);
-        sManager.unregisterListener(this, magnetometer);
+        sManager.unregisterListener(this, gyro);
     }
 
 
@@ -74,6 +70,7 @@ public class GameScreen extends Activity implements SensorEventListener{
         Log.i("Sensor", "Sensor Event, angle: " + angle);
 
         view.updatePlayer(angle);
+        view.invalidate();
     }
 
     @Override
