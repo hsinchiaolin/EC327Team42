@@ -3,6 +3,7 @@ package teamfortytwo.asteroids;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -18,10 +19,17 @@ public class GameView extends View {
     public GameView(Context context, int screenWidth, int screenHeight) {
         super(context);
 
-        setBackground(R.drawable.ingame);
         Resources res = this.getResources();
+        Drawable background = res.getDrawable(R.drawable.ingame);
+        setBackground(background);
 
-        player = new Bee(res, new Vector<Integer>(screenWidth / 2, screenHeight - screenHeight / 5));
+        player = new Bee(res, new Vector(screenWidth / 2, screenHeight - screenHeight / 5), screenWidth / 12);
+    }
+
+    public void updatePlayer(float angle){
+        int move = (int) angle * 1000;
+        player.move(move);
+
     }
 
     @Override
