@@ -67,7 +67,9 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
 
         ObjectAnimator viewAnim = ObjectAnimator.ofInt(view, "frame", 0, 60);
         viewAnim.setDuration(1000);
-        viewAnim.setRepeatMode(ObjectAnimator.INFINITE);
+        viewAnim.setRepeatCount(ObjectAnimator.INFINITE);
+        viewAnim.setRepeatMode(ObjectAnimator.RESTART);
+        viewAnim.addUpdateListener(view);
         viewAnim.start();
 
         view.setOnClickListener(this);

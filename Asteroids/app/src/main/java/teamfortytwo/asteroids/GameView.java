@@ -61,6 +61,11 @@ public class GameView extends View implements ValueAnimator.AnimatorUpdateListen
 //        timer.scheduleAtFixedRate(new MoveEntities(), 3000, 30);
     }
 
+    public void setFrame(int frame){
+        this.frame = frame;
+    }
+    public int getFrame(){ return frame; }
+
     public void updatePlayer(float angle){
         float move = angle * (screenWidth / 80);
         player.move(move);
@@ -87,7 +92,6 @@ public class GameView extends View implements ValueAnimator.AnimatorUpdateListen
     @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
-        Log.i("Entities", "Size: " + entities.size());
         for(int i = 0; i < entities.size(); i++){
             entities.get(i).draw(canvas);
 
@@ -97,7 +101,6 @@ public class GameView extends View implements ValueAnimator.AnimatorUpdateListen
 
     @Override
     public void onAnimationUpdate(ValueAnimator animation) {
-        Log.i("Update", "Frame " + animation.getAnimatedValue());
 
         if(animation.getAnimatedValue() == 0){
             entities.add(new Caterpillar(res, collisions, this, new Vector(random.nextInt() % screenWidth, screenHeight), screenWidth / 12));
