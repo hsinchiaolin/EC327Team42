@@ -14,7 +14,8 @@ public class Entity {
     protected Vector pos; //The position of the Bee on the screen
     protected int size; //this will be added to position in setBounds
     static int team;
-    Collisions collisions;
+    protected int speed;
+    protected Collisions collisions;
 
     public Entity(Collisions collisions, Vector pos, int size){
         this.size = size;
@@ -28,6 +29,13 @@ public class Entity {
     }
     public Drawable getImage(){
         return image;
+    }
+    public int getSize(){
+        return size;
+    }
+
+    public void moveAtSpeed(){
+        addPos(0, speed);
     }
 
     //Set Functions
