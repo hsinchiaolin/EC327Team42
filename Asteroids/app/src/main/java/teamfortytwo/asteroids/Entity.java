@@ -40,7 +40,11 @@ public class Entity {
     public Rect getBounds(){ return bounds; }
 
     public void moveAtSpeed(){
-        addPos(0, speed);
+        try{
+            addPos(0, speed);
+        }catch(NullPointerException e){
+            Log.i("GameView", "NullPointerException with entity at index " + i);
+        }
     }
 
     //Set Functions

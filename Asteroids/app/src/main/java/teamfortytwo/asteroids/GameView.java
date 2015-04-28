@@ -108,11 +108,7 @@ public class GameView extends View implements ValueAnimator.AnimatorUpdateListen
             score += 1;
         }
         for(int i = 0; i < entities.size(); i++){
-            try {
                 entities.get(i).moveAtSpeed();
-            }catch(NullPointerException e){
-                Log.i("GameView", "NullPointerException with entity at index " + i);
-            }
         }
     }
 
