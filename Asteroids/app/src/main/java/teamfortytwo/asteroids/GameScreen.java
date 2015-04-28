@@ -36,12 +36,10 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
     static int screenHeight;
     private MainScreen mainScreen;
 
-    public GameScreen(MainScreen mainScreen){ this.mainScreen = mainScreen; }
-
-
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
+        mainScreen = (MainScreen) getParent();
         //Used for determining screen size in pixels
         DisplayMetrics displayMetrics = new DisplayMetrics();
         WindowManager wm = (WindowManager) getApplicationContext().getSystemService(this.WINDOW_SERVICE);
