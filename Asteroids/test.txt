@@ -1,0 +1,39 @@
+Pointers and Arrays
+
+int x = 5;
+int* xptr = &x;
+
+cout << xptr;		//prints out 0xE (address)
+cout << *xptr;		//prints out 5
+
+
+What is a heap?
+- once you run the function, the OS removes the stack (which happens when you dont use dynamic)
+- we have to make it dynamic, by utilizing dynamic memory allocation
+
+int* result;
+result = add(1,3);
+cout << *result;
+
+int* add(int one, int two)
+{
+	int sum;
+	int* sptr = &sum;
+
+	sum = one + two;
+
+	return sptr;
+}
+
+
+
+DYNAMIC MEMORY!
+int* add(int one, int two)
+{
+	int sum;
+	int* sptr = new int;
+	sptr = &sum;
+
+	sum = one+two;
+	return sptr;
+}
