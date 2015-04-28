@@ -100,7 +100,11 @@ public class GameView extends View {
         @Override
         public void run() {
             for(int i = 0; i < entities.size(); i++){
-             entities.get(i).moveAtSpeed();
+             try {
+                 entities.get(i).moveAtSpeed();
+             }catch(NullPointerException e){
+                 Log.i("GameView", "NullPointerException with entity at index " + i);
+             }
             }
         }
     }

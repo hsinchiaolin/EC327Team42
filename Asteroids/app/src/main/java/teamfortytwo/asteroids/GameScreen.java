@@ -31,7 +31,6 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_screen);
 
         //Used for determining screen size in pixels
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -97,8 +96,8 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
 
     @Override
     public void onClick(View v) {
-        Log.i("GameScreed", "Clicked");
+        Log.i("GameScreen", "Clicked");
 
-        view.
+        view.shoot();
     }
 }
