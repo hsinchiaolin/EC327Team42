@@ -70,11 +70,11 @@ public class GameView extends View implements ValueAnimator.AnimatorUpdateListen
         entities.add(new Bullet(res, collisions, this, 0, player.getPos().copy(), screenWidth / 24));
     }
 
-            scoreScreen();
+
     public void destroyEntity(Entity entity){
         if(entity.equals(player)){
             player = null;
-
+            scoreScreen();
 
         }
         entities.remove(entity);
