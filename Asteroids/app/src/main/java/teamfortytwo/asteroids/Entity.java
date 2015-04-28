@@ -43,7 +43,7 @@ public class Entity {
         try{
             addPos(0, speed);
         }catch(NullPointerException e){
-            Log.i("GameView", "NullPointerException with entity at index " + i);
+            Log.i("GameView", "NullPointerException with entity at index ");
         }
     }
 
