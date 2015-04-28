@@ -54,10 +54,13 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
 
         shootButton = new Button(this);
         shootButton.layout(0, 0, screenWidth, screenHeight);
+        shootButton.setClickable(true);
         shootButton.setAlpha(0);
         shootButton.setOnClickListener(this);
 
+
         view = new GameView(this);
+        view.setOnClickListener(this);
         setContentView(view);
     }
 
