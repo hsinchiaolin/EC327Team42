@@ -39,7 +39,7 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        mainScreen = (MainScreen) getParent();
+        Log.i("GameScreen", "MainScreen = " + mainScreen);
         //Used for determining screen size in pixels
         DisplayMetrics displayMetrics = new DisplayMetrics();
         WindowManager wm = (WindowManager) getApplicationContext().getSystemService(this.WINDOW_SERVICE);
@@ -63,7 +63,7 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
         shootButton.setAlpha(0);
         shootButton.setOnClickListener(this);
 
-        view = new GameView(this, mainScreen);
+        view = new GameView(this);
 
         ObjectAnimator viewAnim = ObjectAnimator.ofInt(view, "frame", 0, 60);
         viewAnim.setDuration(1000);
@@ -123,8 +123,6 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
 
     @Override
     public void onClick(View v) {
-        Log.i("GameScreen", "Clicked");
-
         view.shoot();
     }
 }

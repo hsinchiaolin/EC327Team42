@@ -21,8 +21,13 @@ public class Collisions {
     }
 
     public int check(Entity entity){
-
         int x = entity.getPos().getX(), y = entity.getPos().getY();
+        entities = view.getEntities();
+        for(int i = 0; i < entities.size(); i++){
+            if(entities.get(i).getBounds().intersect(entity.getBounds()) && entities.get(i).getTeam() != entity.getTeam()){
+                return colliding;
+            }
+        }
         if(x < 0 || x > screenWidth - entity.getSize()){
             return off_x;
         }
@@ -30,12 +35,7 @@ public class Collisions {
             return off_y;
         }
 
-        entities = view.getEntities();
-        for(int i = 0; i < entities.size(); i++){
-            if(entities.get(i).getBounds().intersect(entity.getBounds()) && entities.get(i).team != entity.team){
-                return colliding;
-            }
-        }
+
 
         return 0;
     }

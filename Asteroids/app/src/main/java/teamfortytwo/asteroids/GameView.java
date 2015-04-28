@@ -34,13 +34,13 @@ public class GameView extends View implements ValueAnimator.AnimatorUpdateListen
 
     private Random random;
 
-    private MainScreen mainScreen;
+    private GameScreen gameScreen;
     private int screenWidth, screenHeight;
 
-    public GameView(Context context, MainScreen mainScreen) {
+    public GameView(Context context) {
         super(context);
 
-        this.mainScreen = mainScreen;
+        gameScreen = (GameScreen) context;
         this.screenHeight = GameScreen.screenHeight;
         this.screenWidth = GameScreen.screenWidth;
 
@@ -78,12 +78,9 @@ public class GameView extends View implements ValueAnimator.AnimatorUpdateListen
 
     public void destroyEntity(Entity entity){
         if(entity.equals(player)){
-            player = null;
-            mainScreen.startScore();
+            gameScreen.endGame();
         }
-        Log.i("destroyEntity", "" + entities.size());
         entities.remove(entity);
-        Log.i("destroyEntity", "" + entities.size());
     }
 
     public ArrayList<Entity> getEntities(){

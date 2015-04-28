@@ -14,7 +14,7 @@ public class Entity {
     protected Drawable image; //This is the image drawn to the screen
     protected Vector pos; //The position of the Bee on the screen
     protected int size; //this will be added to position in setBounds
-    static int team;
+    protected int team;
     protected int speed;
     protected Collisions collisions;
     protected GameView view;
@@ -22,6 +22,7 @@ public class Entity {
 
     public Entity(Collisions collisions, GameView view, Vector pos, int size){
         this.size = size;
+        this.view = view;
         this.pos = pos; //sets the position vector
         this.collisions = collisions;
         this.bounds = new Rect(pos.getX(), pos.getY(), pos.getX() + size, pos.getY() + size);
@@ -38,13 +39,12 @@ public class Entity {
         return size;
     }
     public Rect getBounds(){ return bounds; }
+    public int getTeam() { return team; }
 
     public void moveAtSpeed(){
-        try{
+
             addPos(0, speed);
-        }catch(NullPointerException e){
-            Log.i("GameView", "NullPointerException with entity at index " + i);
-        }
+
     }
 
     //Set Functions
@@ -54,33 +54,30 @@ public class Entity {
          */
 
 
+
         pos.setX((int) dx + pos.getX());
         pos.setY((int) dy + pos.getY());
         int check = collisions.check(this);
 
-        switch (check){
-            case Collisions.off_x: {
-                pos.setX(pos.getX() - (int) dx);
-                break;
-            }case Collisions.off_y: {
-                pos.setY(pos.getY() - (int) dy);
-                break;
-            }case Collisions.colliding: {
-                Log.i("Entity", "Collision with entity " + this);
-                destroy();
-                break;
-            }
-            default:
-                break;
+        if(check == Collisions.off_x)
+            pos.setX(pos.getX() - (int) dx);
+        if(check == Collisions.off_y) {
+            pos.setY(pos.getY() - (int) dy);
         }
+        if(check == Collisions.colliding) {
+            Log.i("Entity", "Collision with entity " + this);
+            destroy();
+        }
+
+
 
         return check;
     }
 
     protected void setBounds(int left, int top, int right, int bottom){
         //initializes the image onto the screen, android has 0, 0 as the top left corner
-        bounds.set(left, top, right, bottom);
         image.setBounds(left, top, right, bottom);
+        bounds = image.getBounds();
     }
 
 
@@ -91,6 +88,7 @@ public class Entity {
 
     public void destroy(){
         view.destroyEntity(this);
+
     }
 
 
