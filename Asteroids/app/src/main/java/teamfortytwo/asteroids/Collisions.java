@@ -1,14 +1,21 @@
 package teamfortytwo.asteroids;
 
+import java.util.ArrayList;
+
 /**
  * Created by BrandonWebster on 4/27/15.
  */
 public class Collisions {
 
-    static final int off_x = 1, off_y = 2;
+    static final int off_x = 1, off_y = 2, colliding = 3;
     int screenWidth, screenHeight;
 
-    public Collisions(){
+    GameView view;
+    ArrayList<Entity> entities;
+
+    public Collisions(GameView view){
+        this.view = view;
+
         screenHeight = GameScreen.screenHeight;
         screenWidth = GameScreen.screenWidth;
     }
@@ -21,6 +28,13 @@ public class Collisions {
         }
         if(y < -entity.getSize() || y > screenHeight + entity.getSize()){
             return off_y;
+        }
+
+        entities = view.getEntities();
+        for(int i = 0; i < entities.size(); i++){
+            if(entities.get(i).getBounds().intersect(entity.getBounds()) && entities.get(i).team != entity.team){
+                return colliding;
+            }
         }
 
         return 0;

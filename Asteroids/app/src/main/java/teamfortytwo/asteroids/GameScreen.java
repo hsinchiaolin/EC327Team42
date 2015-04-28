@@ -8,6 +8,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -96,6 +97,8 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
 
     @Override
     public void onClick(View v) {
+        Log.i("GameScreed", "Clicked");
 
+        view.
     }
 }

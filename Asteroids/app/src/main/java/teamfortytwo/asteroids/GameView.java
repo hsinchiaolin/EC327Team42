@@ -19,15 +19,14 @@ import java.util.TimerTask;
 
 public class GameView extends View {
     /* This class is where drawables actually get updated and drawn. */
-    Bee player;
-    ArrayList<Entity> entities = new ArrayList<Entity>();
-    Collisions collisions;
-    Resources res;
+    private Bee player;
+    private ArrayList<Entity> entities = new ArrayList<Entity>();
+    private Collisions collisions;
+    private Resources res;
 
-    Random random;
+    private Random random;
 
-    int screenWidth, screenHeight;
-
+    private int screenWidth, screenHeight;
 
     public GameView(Context context) {
         super(context);
@@ -41,14 +40,14 @@ public class GameView extends View {
         Drawable background = res.getDrawable(R.drawable.ingame);
         setBackground(background);
 
-        collisions = new Collisions();
-        player = new Bee(res, collisions, new Vector(screenWidth / 2, screenHeight / 10), screenWidth / 12);
+        collisions = new Collisions(this);
+        player = new Bee(res, collisions, this, new Vector(screenWidth / 2, screenHeight / 10), screenWidth / 12);
 
         Timer timer = new Timer();
 
         Log.i("Time", ""+ System.currentTimeMillis());
 
-        timer.scheduleAtFixedRate(new CreateEnemies(), 5000, 500);
+        timer.scheduleAtFixedRate(new CreateEnemies(this), 5000, 500);
         timer.scheduleAtFixedRate(new MoveEntities(), 3000, 30);
     }
 
@@ -57,6 +56,19 @@ public class GameView extends View {
         player.move(move);
 
     }
+    public void shoot(){
+        entities.add(new Bullet(res, collisions, this, 0, player.getPos(), screenWidth / 24));
+    }
+
+
+    public void destroyEntity(Entity entity){
+        entities.remove(entity);
+    }
+
+    public ArrayList<Entity> getEntities(){
+        return entities;
+    }
+
 
     @Override
     protected void onDraw(Canvas canvas){
@@ -71,9 +83,14 @@ public class GameView extends View {
 
     private class CreateEnemies extends TimerTask{
 
+        GameView view;
+        public CreateEnemies(GameView view){
+            this.view = view;
+        }
+
         @Override
         public void run() {
-            entities.add(new Caterpillar(res, collisions, new Vector(random.nextInt() % screenWidth, screenHeight), screenWidth / 12));
+            entities.add(new Caterpillar(res, collisions, view, new Vector(random.nextInt() % screenWidth, screenHeight), screenWidth / 12));
         }
 
     }

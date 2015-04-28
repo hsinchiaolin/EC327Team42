@@ -2,6 +2,7 @@ package teamfortytwo.asteroids;
 
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -16,11 +17,14 @@ public class Entity {
     static int team;
     protected int speed;
     protected Collisions collisions;
+    protected GameView view;
+    protected Rect bounds;
 
-    public Entity(Collisions collisions, Vector pos, int size){
+    public Entity(Collisions collisions, GameView view, Vector pos, int size){
         this.size = size;
         this.pos = pos; //sets the position vector
         this.collisions = collisions;
+        this.bounds = new Rect(pos.getX(), pos.getY(), pos.getX() + size, pos.getY() + size);
     }
 
     //Get Functions
@@ -33,13 +37,14 @@ public class Entity {
     public int getSize(){
         return size;
     }
+    public Rect getBounds(){ return bounds; }
 
     public void moveAtSpeed(){
         addPos(0, speed);
     }
 
     //Set Functions
-    public void addPos(float dx, float dy){
+    public int addPos(float dx, float dy){
         /*
         Set the position of the entity
          */
@@ -48,17 +53,28 @@ public class Entity {
         pos.setX((int) dx + pos.getX());
         pos.setY((int) dy + pos.getY());
         int check = collisions.check(this);
-        if(check == Collisions.off_x){
-            pos.setX(pos.getX() - (int) dx);
-        }
-        if(check == Collisions.off_y){
-            pos.setY(pos.getY() - (int) dy);
+
+        switch (check){
+            case Collisions.off_x: {
+                pos.setX(pos.getX() - (int) dx);
+                break;
+            }case Collisions.off_y: {
+                pos.setY(pos.getY() - (int) dy);
+                break;
+            }case Collisions.colliding: {
+                destroy();
+                break;
+            }
+            default:
+                break;
         }
 
+        return check;
     }
 
     protected void setBounds(int left, int top, int right, int bottom){
         //initializes the image onto the screen, android has 0, 0 as the top left corner
+        bounds.set(left, top, right, bottom);
         image.setBounds(left, top, right, bottom);
     }
 
@@ -66,6 +82,10 @@ public class Entity {
     public void draw(Canvas canvas){
         setBounds(pos.getX(), pos.getY(), pos.getX() + size, pos.getY() + size); //updates the position of the image on the screen
         image.draw(canvas); //Draws the image
+    }
+
+    public void destroy(){
+        view.destroyEntity(this);
     }
 
 

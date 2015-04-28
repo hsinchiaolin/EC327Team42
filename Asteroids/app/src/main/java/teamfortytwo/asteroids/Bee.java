@@ -9,8 +9,8 @@ import android.content.res.Resources;
 public class Bee extends Entity{
 
 
-    public Bee(Resources res, Collisions collisions, Vector pos, int size){
-        super(collisions, pos, size);
+    public Bee(Resources res, Collisions collisions, GameView view, Vector pos, int size){
+        super(collisions, view, pos, size);
         image = res.getDrawable(R.drawable.b_small); //Set the image to be the file b_small.png
         setBounds(pos.getX(), pos.getY(), pos.getX() + size, pos.getY() + size); //initializes the image onto the screen, android has 0, 0 as the top left corner
 
