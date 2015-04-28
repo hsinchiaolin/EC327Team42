@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.widget.Button;
 
 /**
  * Created by BrandonWebster on 4/8/15.
@@ -25,6 +26,8 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
             mR = new float[9], mOrientation = new float[3];
 
     GameView view; //This is needed for to draw drawables
+
+    private Button shootButton;
 
     static int screenWidth;
     static int screenHeight;
@@ -48,6 +51,11 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
         sManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_GAME);
         accSet = false;
         magSet = false;
+
+        shootButton = new Button(this);
+        shootButton.layout(0, 0, screenWidth, screenHeight);
+        shootButton.setAlpha(0);
+        shootButton.setOnClickListener(this);
 
         view = new GameView(this);
         setContentView(view);
