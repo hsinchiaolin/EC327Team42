@@ -1,5 +1,7 @@
 package teamfortytwo.asteroids;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.hardware.Sensor;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ViewAnimator;
 
 /**
  * Created by BrandonWebster on 4/8/15.
@@ -31,6 +34,10 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
 
     static int screenWidth;
     static int screenHeight;
+    private MainScreen mainScreen;
+
+    public GameScreen(MainScreen mainScreen){ this.mainScreen = mainScreen; }
+
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -58,8 +65,13 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
         shootButton.setAlpha(0);
         shootButton.setOnClickListener(this);
 
+        view = new GameView(this, mainScreen);
 
-        view = new GameView(this);
+        ObjectAnimator viewAnim = ObjectAnimator.ofInt(view, "frame", 0, 60);
+        viewAnim.setDuration(1000);
+        viewAnim.setRepeatMode(ObjectAnimator.INFINITE);
+        viewAnim.start();
+
         view.setOnClickListener(this);
         setContentView(view);
     }

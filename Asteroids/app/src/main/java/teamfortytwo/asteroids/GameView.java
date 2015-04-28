@@ -1,6 +1,7 @@
 package teamfortytwo.asteroids;
 
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -19,20 +20,24 @@ import java.util.TimerTask;
  * Created by BrandonWebster on 4/22/15.
  */
 
-public class GameView extends View{
+public class GameView extends View implements ValueAnimator.AnimatorUpdateListener{
     /* This class is where drawables actually get updated and drawn. */
     private Bee player;
     private ArrayList<Entity> entities = new ArrayList<Entity>();
     private Collisions collisions;
     private Resources res;
 
+    public int frame = 0;
+
     private Random random;
 
+    private MainScreen mainScreen;
     private int screenWidth, screenHeight;
 
-    public GameView(Context context) {
+    public GameView(Context context, MainScreen mainScreen) {
         super(context);
 
+        this.mainScreen = mainScreen;
         this.screenHeight = GameScreen.screenHeight;
         this.screenWidth = GameScreen.screenWidth;
 
@@ -44,6 +49,8 @@ public class GameView extends View{
 
         collisions = new Collisions(this);
         player = new Bee(res, collisions, this, new Vector(screenWidth / 2, screenHeight / 10), screenWidth / 12);
+
+
 
         Timer timer = new Timer();
 
@@ -85,6 +92,11 @@ public class GameView extends View{
 
         }
         player.draw(canvas);
+    }
+
+    @Override
+    public void onAnimationUpdate(ValueAnimator animation) {
+        Log.i("Update", " " + animation.getAnimatedValue());
     }
 
     private class CreateEnemies extends TimerTask{
