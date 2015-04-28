@@ -64,6 +64,10 @@ public class GameScreen extends Activity implements OnClickListener, SensorEvent
         setContentView(view);
     }
 
+    public void endGame(){
+        finish();
+    }
+
     @Override
     protected void onResume(){
         super.onResume();

@@ -1,5 +1,6 @@
 package teamfortytwo.asteroids;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -58,19 +59,22 @@ public class GameView extends View{
 
     }
     public void shoot(){
-        entities.add(new Bullet(res, collisions, this, 0, player.getPos(), screenWidth / 24));
+        entities.add(new Bullet(res, collisions, this, 0, player.getPos().copy(), screenWidth / 24));
     }
 
 
     public void destroyEntity(Entity entity){
+        if(entity.equals(player)){
+            player = null;
 
+
+        }
         entities.remove(entity);
     }
 
     public ArrayList<Entity> getEntities(){
         return entities;
     }
-
 
     @Override
     protected void onDraw(Canvas canvas){
@@ -102,11 +106,11 @@ public class GameView extends View{
         @Override
         public void run() {
             for(int i = 0; i < entities.size(); i++){
-             try {
-                 entities.get(i).moveAtSpeed();
-             }catch(NullPointerException e){
-                 Log.i("GameView", "NullPointerException with entity at index " + i);
-             }
+                 try {
+                     entities.get(i).moveAtSpeed();
+                 }catch(NullPointerException e){
+                     Log.i("GameView", "NullPointerException with entity at index " + i);
+                 }
             }
         }
     }

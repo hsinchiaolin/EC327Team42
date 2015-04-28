@@ -44,6 +44,10 @@ public class Vector {
     }
     public int getZ() { return z; }
 
+    public Vector copy(){
+        return new Vector(x, y, z);
+    }
+
 
 
 
