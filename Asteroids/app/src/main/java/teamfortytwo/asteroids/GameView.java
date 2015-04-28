@@ -3,6 +3,7 @@ package teamfortytwo.asteroids;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
@@ -73,7 +74,7 @@ public class GameView extends View implements ValueAnimator.AnimatorUpdateListen
     public void destroyEntity(Entity entity){
         if(entity.equals(player)){
             player = null;
-
+            scoreScreen();
 
         }
         entities.remove(entity);
