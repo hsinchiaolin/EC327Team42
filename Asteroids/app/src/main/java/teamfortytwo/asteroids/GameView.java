@@ -17,7 +17,7 @@ import java.util.TimerTask;
  * Created by BrandonWebster on 4/22/15.
  */
 
-public class GameView extends View {
+public class GameView extends View implements View.OnClickListener{
     /* This class is where drawables actually get updated and drawn. */
     private Bee player;
     private ArrayList<Entity> entities = new ArrayList<Entity>();
@@ -78,6 +78,13 @@ public class GameView extends View {
 
         }
         player.draw(canvas);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Log.i("GameView", "Clicked");
+
+        shoot();
     }
 
 
