@@ -74,7 +74,7 @@ public class GameView extends View implements ValueAnimator.AnimatorUpdateListen
     public void destroyEntity(Entity entity){
         if(entity.equals(player)){
             player = null;
-            scoreScreen();
+            mainScreen.startScore();
 
         }
         entities.remove(entity);
