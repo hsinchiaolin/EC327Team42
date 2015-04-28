@@ -27,6 +27,8 @@ public class GameView extends View implements ValueAnimator.AnimatorUpdateListen
     private Collisions collisions;
     private Resources res;
 
+    private int score = 0;
+
     public int frame = 0;
 
     private Random random;
@@ -52,12 +54,10 @@ public class GameView extends View implements ValueAnimator.AnimatorUpdateListen
 
 
 
-        Timer timer = new Timer();
-
-        Log.i("Time", ""+ System.currentTimeMillis());
-
-        timer.scheduleAtFixedRate(new CreateEnemies(this), 5000, 500);
-        timer.scheduleAtFixedRate(new MoveEntities(), 3000, 30);
+//        Timer timer = new Timer();
+//
+//        timer.scheduleAtFixedRate(new CreateEnemies(this), 5000, 500);
+//        timer.scheduleAtFixedRate(new MoveEntities(), 3000, 30);
     }
 
     public void updatePlayer(float angle){
@@ -96,34 +96,40 @@ public class GameView extends View implements ValueAnimator.AnimatorUpdateListen
 
     @Override
     public void onAnimationUpdate(ValueAnimator animation) {
-        Log.i("Update", " " + animation.getAnimatedValue());
-    }
+        Log.i("Update", "Frame " + animation.getAnimatedValue());
 
-    private class CreateEnemies extends TimerTask{
-
-        GameView view;
-        public CreateEnemies(GameView view){
-            this.view = view;
+        if(animation.getAnimatedValue() == 0){
+            entities.add(new Caterpillar(res, collisions, this, new Vector(random.nextInt() % screenWidth, screenHeight), screenWidth / 12));
+            score += 1;
         }
-
-        @Override
-        public void run() {
-            entities.add(new Caterpillar(res, collisions, view, new Vector(random.nextInt() % screenWidth, screenHeight), screenWidth / 12));
-        }
-
-    }
-    private class MoveEntities extends TimerTask{
-
-
-        @Override
-        public void run() {
-            for(int i = 0; i < entities.size(); i++){
-                 try {
-                     entities.get(i).moveAtSpeed();
-                 }catch(NullPointerException e){
-                     Log.i("GameView", "NullPointerException with entity at index " + i);
-                 }
+        for(int i = 0; i < entities.size(); i++){
+            try {
+                entities.get(i).moveAtSpeed();
+            }catch(NullPointerException e){
+                Log.i("GameView", "NullPointerException with entity at index " + i);
             }
         }
     }
+
+//    private class CreateEnemies extends TimerTask{
+//
+//        GameView view;
+//        public CreateEnemies(GameView view){
+//            this.view = view;
+//        }
+//
+//        @Override
+//        public void run() {
+//            entities.add(new Caterpillar(res, collisions, view, new Vector(random.nextInt() % screenWidth, screenHeight), screenWidth / 12));
+//        }
+//
+//    }
+//    private class MoveEntities extends TimerTask{
+//
+//
+//        @Override
+//        public void run() {
+//
+//        }
+//    }
 }
