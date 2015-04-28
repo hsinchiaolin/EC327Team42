@@ -62,6 +62,7 @@ public class Entity {
                 pos.setY(pos.getY() - (int) dy);
                 break;
             }case Collisions.colliding: {
+                Log.i("Entity", "Collision with entity " + this);
                 destroy();
                 break;
             }

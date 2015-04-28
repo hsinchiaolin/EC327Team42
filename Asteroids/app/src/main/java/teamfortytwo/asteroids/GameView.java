@@ -80,9 +80,10 @@ public class GameView extends View implements ValueAnimator.AnimatorUpdateListen
         if(entity.equals(player)){
             player = null;
             mainScreen.startScore();
-
         }
+        Log.i("destroyEntity", "" + entities.size());
         entities.remove(entity);
+        Log.i("destroyEntity", "" + entities.size());
     }
 
     public ArrayList<Entity> getEntities(){
